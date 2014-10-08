@@ -26,15 +26,28 @@ def abbr(lstdict,lsttext):
     #print finalstr.strip()
     return finalstr.strip()
 
-#unintelligent string parsing, split into chunks regardless of spaces
 def generate_list(text, chunklength):
-    slist = []
-    num_chunks = int(math.ceil(len(text)/chunklength))
-    for i in range(num_chunks):
-        index = i * chunklength
-        if index + chunklength >= len(text): slist.append( text[index:] )
-        else: slist.append( text[index:index+chunklength])
-    return slist
+    slist=[]
+    #split text into words
+    len_chunk = 0
+    chunk = ""
+    words = text.split()
+    for word in words:
+        if len_chunk == 0:
+            if len_chunk + len(word) >= chunklength: #word is too long, have to split it
+                pass #finish this logic later
+            else:
+                chunk = word
+                len_chunk = len(word)
+                continue
+        if len_chunk + len(word) + 1 >= chunklength:
+            slist.append(chunk)
+            chunk=word
+            len_chunk = len(word)
+        else:
+            chunk+= " "+word
+            len_chunk = len(word)+1
+    return slist 
 
 if __name__ == '__main__':
     lstdict = []
