@@ -7,9 +7,13 @@ def parse_text(txt, source, hashtag=""):
         return tweetlist
     else:
         return "ERROR"
-        
-def generate_list(text, chunk_len):
-    textlist=[]
-    
-    return textlist
 
+#unintelligent string parsing, split into chunks regardless of spaces
+def generate_list(text, chunklength):
+    slist = []
+    num_chunks = int(math.ceil(len(text)/chunklength))
+    for i in range(num_chunks):
+        index = i * chunklength
+        if index + chunklength >= len(text): slist.append( text[index:] )
+        else: slist.append( text[index:index+chunklength])
+    return slist
