@@ -46,7 +46,7 @@ def generate_list(text, chunklength):
             len_chunk = len(word)
         else:
             chunk+= " "+word
-            len_chunk = len(word)+1
+            len_chunk += len(word)+1
     return slist 
 
 if __name__ == '__main__':
@@ -59,6 +59,6 @@ if __name__ == '__main__':
         for line in f:
             lsttext.append(line.split())
     abbrtext = abbr(lstdict,lsttext[0])
-    print generate_list(abbrtext, 10)
+    print generate_list(abbrtext, 140)
 
 
